@@ -1,0 +1,23 @@
+<%# <% user ||= current_user %>
+    <div class="status">
+        <% if user.follower.count != 0 %>
+            <a href="<%= following_user_path(user) %>">
+            <strong id="following" class="stat">
+                <%= user.follower.count %>
+            </strong>
+            フォロー
+            </a>
+        <% else %>
+            <a>0フォロー</a>
+        <% end %>
+        <% if user.followed.count != 0 %>
+            <a href="<%= followers_user_path(user) %>">
+                <strong id="followers" class="stat">
+                    <%= user.followed.count %>
+                </strong>
+                フォロワー
+            </a>
+        <% else %>
+            <a>0フォロワー</a>
+        <% end %>
+    </div>

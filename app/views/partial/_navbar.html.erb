@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+        <%= link_to "InstaClone", root_path, class: "mainlogo" %>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-md-auto align-items-center">
+            <% if current_user != nil %>
+                <li>
+                    <%= link_to "お気に入り一覧", user_favorites_path(current_user), class: "btn btn-primary" %>
+                </li>
+                <li>
+                    <%= link_to(notifications_path) do %>
+                        <% if unchecked_notifications.any? %>
+                            <span class="fa-stack">
+                                <i class="far fa-bell fa-lg fa-stack-2x" style="font-size: 1.5em;"></i>
+                                <i class="fas fa-circle n-circle fa-stack-1x"></i>
+                            </span>
+                        <% else %>
+                            <i class="far fa-bell fa-lg" style="font-size: 1.5em;"></i>
+                        <% end %>
+                    <% end %>
+                </li>
+                <li>
+                    <%= link_to "", user_path(current_user), class: "nav-link commonNavIcon profile-icon" %>
+                </li>
+            <% end %>
+        </ul>
+        </div>
+    </div>
+</nav>

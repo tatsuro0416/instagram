@@ -1,0 +1,26 @@
+.main{
+    max-width: 960px;
+    margin: 0 auto;
+    width: 90%;
+    padding: 100px 75px 100px;
+    display: block;
+    flex: 1;
+    flex-basis: auto;
+    box-sizing: border-box;
+}
+.card{
+    padding: 100px;
+}
+.form_wrap{
+    max-width: 400px;
+    width: 100%;
+    margin: 50px auto;
+}
+.devise-link {
+    text-align: center;
+    margin: 16px 0;
+}
+
+.link-block{
+    display: block;
+}

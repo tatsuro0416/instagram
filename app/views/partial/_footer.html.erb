@@ -1,0 +1,7 @@
+<ul class="navbar-nav footer_right" >
+    <% if current_user != nil %>
+        <li>
+            <%= link_to "写真を投稿する", new_post_path, class: "btn-light" %>
+        </li>
+    <% end %>
+</ul>

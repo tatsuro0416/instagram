@@ -1,0 +1,2 @@
+$('#favorite-<%= @post.id.to_s %>').
+    html('<%= j render "posts/favorite", { post: @post } %>');

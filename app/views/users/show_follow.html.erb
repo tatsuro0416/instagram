@@ -1,0 +1,41 @@
+<% provide(:title, @title) %>
+<div class="title">
+    <h1><%= @title %></h1>
+</div>
+<% if @title == "フォロー" %>
+    <% if @user.following_user.count != 0 %>
+        <% @user.following_user.each do |user| %>
+            <div class="col-md-8 col-md-2">
+                <div class="row">
+                    <%= link_to user_path(user), class: "no-text-decoration" do %>
+                        <%= image_tag avatar_url(user), class: "post-profile-icon" %>
+                    <% end %>
+                    <h2><%= user.name %></h2>
+                    <div id="follow_status<%= user.id %>">
+                        <%= render "partial/follow_status", { user: user} %>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    <% else %>
+        <h3>フォローしている人はいません。</h3>
+    <% end %>
+<% else %>
+    <% if @user.follower_user.count != 0 %>
+        <% @user.follower_user.each do |user| %>
+            <div class="col-md-8 col-md-2 mx-auto">
+                <div class="row">
+                    <%= link_to user_path(user), class: "no-text-decoration" do %>
+                        <%= image_tag avatar_url(user), class: "post-profile-icon" %>
+                    <% end %>
+                    <h2><%= user.name %></h2>
+                    <div id="follow_status<%= user.id %>">
+                        <%= render "partial/follow_status", { user: user} %>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    <% else %>
+        <h3>フォローしている人はいません。</h3>
+    <% end %>
+<% end %>

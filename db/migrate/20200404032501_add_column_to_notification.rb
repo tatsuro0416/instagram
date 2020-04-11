@@ -2,8 +2,8 @@
 
 class AddColumnToNotification < ActiveRecord::Migration[5.2]
   def change
-    add_column :notifications, :visitor_id, :integer
-    add_column :notifications, :visited_id, :integer
+    # add_column :notifications, :visitor_id, :integer
+    # add_column :notifications, :visited_id, :integer
     add_column :notifications, :post_id, :integer
     add_column :notifications, :comment_id, :integer
     add_column :notifications, :action, :string, default: '', null: false

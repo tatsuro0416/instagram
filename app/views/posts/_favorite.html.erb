@@ -1,0 +1,7 @@
+<div class="ml-auto mx-0 my-auto">
+    <% if favorite = Favorite.find_by(user_id: current_user.id, post_id: post.id) %>
+        <%= link_to "お気に入り解除", post_favorite_path(post, favorite), remote: true, method: :delete %>
+    <% else %>
+        <%= link_to "お気に入り", post_favorites_path(post), remote: true, method: :post %>
+    <% end %>
+</div>

@@ -1,0 +1,4 @@
+$('#follow_count<%= @user.id %>').
+    html('<%= j render "partial/follow_count", { user: @user } %>');
+$('#follow_status<%= @user.id %>').
+    html('<%= j render "partial/follow_status", { user: @user } %>');

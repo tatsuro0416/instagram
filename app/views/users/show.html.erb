@@ -1,0 +1,77 @@
+<% provide(:title, "User") %>
+<div class="profile-wrap">
+    <div class="row">
+        <div class="col-md-4 text-center">
+        <%= image_tag avatar_url(@user), class: "round-img" %>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <h1>
+                <%= @user.name %>
+                </h1>
+                <% if @user == current_user %>
+                    <%= link_to "プロフィールを編集", edit_user_registration_path, class: "btn btn-outline-dark common-btn edit-profile-btn" %> 
+                    <button type="button" class="setting" data-toggle="modal" data-target="#exampleModal"></button>
+                <% end %>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">設定</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button> </div>
+                            <div class="list-group text-center">
+                                <%= link_to "サインアウト", destroy_user_session_path, method: :delete, class: "list-group-item list-group-item-action" %>
+                                <%= link_to "アカウント削除", user_registration_path, method: :delete, class: "list-group-item list-group-item-action" %>
+                                <%= link_to "キャンセル", "#", class: "list-group-item list-group-item-action", "data-dismiss": "modal" %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a>website: <%= @user.website %></a><br>
+            <a>自己紹介: <%= @user.introduction %></a>
+            <div id="follow_count<%= @user.id %>">
+                <%= render 'partial/follow_count', { user: @user } %> 
+            </div>
+            <div id="follow_status<%= @user.id %>">
+                <%= render 'partial/follow_status', { user: @user } %>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <% @user.posts.each do |post| %>
+            <div class="col-md-4">
+                <%= image_tag post.photos.first.image.url(:medium), class: "card-img-top", "data-toggle" => "modal", 'data-target' => "#detailModal-#{post.id.to_s}"  %>
+                <div class="modal fade" id="detailModal-<%= post.id.to_s %>" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="detailModalLabel">投稿詳細</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button> </div>
+                            <div class="text-center">
+                                <%= image_tag post.photos.first.image.url(:medium), class: "card-img-top" %>
+                                <%# <%= render '/posts/comment_list', { post: post } %> 
+                                <% post.comments.each do |comment| %>
+                                    <div class="mb-2">  
+                                        <span>
+                                            <strong>
+                                                <%= link_to comment.user.name, user_path(comment.user), class: "no-text-decoration black-color" %>
+                                            </strong>
+                                        </span>
+                                        <span><%= comment.comment %></span>
+                                    </div>
+                                <% end %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>

@@ -1,24 +1,30 @@
-# README
+サブ課題のインスタグラムのクローンアプリです  
+<https://instaclone0416suzuki.herokuapp.com/>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# 苦労した点
+* 複数モデルの関連付け  
+ 機能追加に伴い、PostやUserに関連付ける情報が増えていき、混乱してしまいました。
+どうやれば、Postに紐づいている情報を取得できるのか？どのようなデータ構造にすれば良いのか？
+を悩むことが多かったです。
 
-Things you may want to cover:
+* フォロー機能の実装  
+モデル同士が一対多ではなく多対多の関係になる構造を作るのが難しく感じました。
+※結局、Qiitaの記事などを参考に作りました。
 
-* Ruby version
+# 学んだ点 
+* 悩んだら、まずはメモに書き出す  
+苦労した点にも記載いたしましたが、複数モデルが絡んできて悩む場合は
+まずスプレッドシートなどに各テーブルの関係を整理すると、自然と頭の中でも整理され
+スムーズに手を動かせると思いました。
 
-* System dependencies
+* Gemはとても便利、でも難しい  
+Deviseなど汎用的な機能はすでにライブラリ化されていて、さすが、とても便利だなと感じました。
+その一方で、利用する以上は挙動を完全に理解した上で使用する必要がありますし
+Gem外の機能を実装する場合に自由が効かなくてつまづく危険も大いにあると感じました。
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# 自慢したい・相談したい点
+* デザインにも気を使ってみました  
+Railsチュートリアルで作ったサンプルに機能追加していく方法もありましたが
+もう一度Rails newして作りました
+※デザインがあまり好みではなかったのと、教材に縛られず自由に手を動かしてみたかったので、、！
+　しかし、思ったより時間がかかり、結果として中途半端になってしまいました。

@@ -1,0 +1,22 @@
+<% provide(:title, "Notifications") %>
+<% notifications = @notifications.where.not(visitor_id: current_user.id) %>
+<% if notifications.exists? %>
+    <% notifications.each do |notification| %>
+        <div class="col-md-6 mx-auto form-inline">
+            <%= link_to user_path(notification.visitor), class: "no-text-decoration" do %>
+                <%= image_tag avatar_url(notification.visitor), class: "post-profile-icon" %>
+            <% end %>
+            <a><%= notification.visitor.name %>さんが</a>
+            <% case notification.action %>
+            <% when "favorite" then %>
+                <%= link_to "あなたの投稿", post_path(notification.post), style: "font-weight: bold;" %>
+                <a>をお気に入りに追加しました</a>
+            <% when "comment" then %>
+                <%= link_to "あなたの投稿", post_path(notification.post), style: "font-weight: bold;" %>
+                <a>にコメントしました</a>
+            <% end %>
+        </div>
+    <% end %>
+<% else %>
+    <a>通知はありません</a>
+<% end %>
